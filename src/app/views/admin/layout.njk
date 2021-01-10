@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/styles/layout.css">
+    
+    {% block css%}{% endblock %}
+
+    <title>Foodfy</title>
+</head>
+<body>
+    <main class="app">
+            <header class="navigation admin">
+                <div class="container navigation-wrapper">
+                    <a class="logo" href="/" class="foodfy">Foodfy</a>
+
+                    <nav class="menu">
+                        <a href="/about">Sobre</a>
+                        <a href="/admin/recipes">Receitas</a>
+                        <a href="/admin/chefs">Chefes</a>
+                    </nav>
+                </div>
+            </header>
+
+            {% block content %}
+            
+            {% endblock %}
+
+    </main>
+
+    <footer>
+        <p>Todos direitos reservados, receitas Foodfy.</p>
+    </footer>
+    
+    {% block scripts%}{% endblock %}
+</body>
+</html>

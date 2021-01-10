@@ -1,0 +1,96 @@
+.card-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.card-control h3 {
+    font-size: 1.5rem;
+}
+
+.button {
+    font-weight: 700;
+    color: #fff;
+    padding: 9px 20px;
+
+    background-color: var(--primary-color);
+    border-radius: 4px;
+
+    transition: 700ms;
+}
+
+.button:hover {
+    background-color: #251978;
+}
+
+.qtde-recipes {
+    color: #777;
+    font-size: 20px;
+}
+
+/* IMAGE */
+.card-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    margin-bottom: 30px;
+}
+
+.chef-show .card-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    align-self: center;
+}
+
+.card-image img {
+    width: 100%;
+    object-fit: cover;
+    background-position: top center;
+
+    max-height: 300px;
+    border-radius: 16px;
+    margin-bottom: 50px;
+}
+
+.card-image h1 {
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+
+    margin-bottom: 5px;
+}
+
+.card-image p {
+    text-align: center;
+    color: #999;
+}
+
+/* INFORMATIONS */
+.card-informations {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+
+    margin-bottom: 120px;
+}
+
+.card-informations .cards {
+    margin-left: 15px;
+}
+
+.card-informations .cards .subtitle {
+    margin-bottom: 20px;
+}
+
+
+@media (max-width: 940PX){
+    .show {
+        padding: 0 30px 0 30px;
+    }
+}

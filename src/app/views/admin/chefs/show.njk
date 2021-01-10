@@ -1,0 +1,48 @@
+{% extends 'admin/layout.njk' %}
+
+{% block css %}
+<link rel="stylesheet" href="/styles/admin/show.css">
+<link rel="stylesheet" href="/styles/admin/index.css">
+
+{% endblock %}
+
+{% block content %}
+<section class="container chef-show">
+
+    <div class="card-control">
+        <h3 class="sub-title">Chefe: {{chef.name}}</h3>
+        <a href="/admin/chefs/{{chef.id}}/edit" id="{{chef.id}}" class="button">Editar Chefe</a>
+    </div>
+
+    <section class="card-image">
+        <img class="avatar_img" src="{{chef.avatar_url}}" alt="{{chef.name}}">
+
+        <h1 class="title">{{chef.name}}</h1>
+        <span class="qtde-recipes">{{recipes.length}} Receitas</span>
+    </section>
+
+    <section class="management-wrapper container">
+        <div class="management">
+
+            {% if recipes.length %}
+                <h1 class="title">Receitas</h1>
+
+                {% for recipe in recipes %}
+                    <div class="recipes">
+                        <img src="{{recipe.image}}" alt="{{recipe.title}}">
+                        
+                        <div class="info">
+                            <h3>{{recipe.title}}</h3>
+                            <p>por {{chef.name}}</p>
+                            <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+                        </div>     
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h1 class="title">O Chefe {{chef.name}} ainda não possui nenhum receita cadastrada</h1>
+            {%endif%}
+
+        </div>
+    </section>
+</section>
+{% endblock %}

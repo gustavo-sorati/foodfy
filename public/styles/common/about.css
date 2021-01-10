@@ -1,0 +1,35 @@
+.info {
+    width: 100%;
+}
+
+section.info article h1, 
+section.info article h2{
+    line-height: 28px;
+    margin-bottom: 40px;
+}
+
+section.info article h1{
+    font-size: 28px;
+}
+
+section.info article h2{
+    font-size: 20px;
+}
+
+section.info article p {
+    font-size: 18px;
+    color: #444;
+    line-height: 28px;
+
+    margin-bottom: 20px;
+}
+
+section.info article p:last-child {
+    margin-bottom: 40px;
+}
+
+@media (max-width: 940PX){
+    .info {
+        padding: 0 30px 0 30px;
+    }
+}

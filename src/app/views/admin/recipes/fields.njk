@@ -1,0 +1,109 @@
+{# IMAGE #}
+<div class="card">
+    <div class="minititle">Imagem da receita</div>
+
+    <input 
+        type="text"
+        id="image"
+        name="image"
+        value="{{recipe.image}}"
+    >
+</div>
+
+<div class="card">
+    <div class="minititle">Título da receita</div>
+
+    <select name="chef" id="chef_id">
+        {% for chef in chefs %}
+            <option value="{{chef.id}}">{{chef.name}}</option>
+        {% endfor %}
+    </select>
+</div>
+
+{# TITLE #}
+<div class="card">
+    <div class="minititle">Título da receita</div>
+
+    <input 
+        type="text"
+        id="title"
+        name="title"
+        value="{{recipe.title}}"
+    >
+</div>
+
+
+
+{# INGREDIENT #}
+<div class="card">
+    <div class="minititle">Ingredientes</div>
+
+    <div class="list" id="ingredients">
+        {% if recipe.ingredients.length > 0 %}
+            {% for ingredient in recipe.ingredients %}
+            <div class="item" id="ingredients_{{loop.index0}}">
+                <input 
+                    type="text"
+                    name="ingredients[{{loop.index0}}]"
+                    value="{{ingredient}}"
+                >
+
+                <span type="button" class="remove_item">X</span>
+            </div>
+            {% endfor%}
+        {% else %}
+            <div class="item" id="ingredients_{{loop.index0}}">
+                <input 
+                    type="text"
+                    name="ingredients[{{loop.index0}}]"
+                    value="{{ingredient}}"
+                >
+
+                <span class="remove_item">X</span>
+            </div>
+        {% endif %}
+    </div>
+    <button class="add_item">Adicionar novo ingrediente</button>
+</div>
+
+{# PREPARATION #}
+<div class="card">
+    <div class="minititle">Modo de preparo</div>
+
+    <div class="list" id="preparations">
+        {% if recipe.preparation.length > 0 %}
+            {% for preparation in recipe.preparation %}
+            <div class="item" id="preparations_{{loop.index0}}">
+                <input 
+                    type="text"
+                    name="preparations[{{loop.index0}}]"
+                    value="{{preparation}}"
+                >
+
+                <span class="remove_item">X</span>
+            </div>
+            {% endfor%}
+        {% else %}
+            <div class="item" id="preparations_{{loop.index0}}">
+                <input 
+                    type="text"
+                    name="preparations[{{loop.index0}}]"
+                    value="{{preparation}}"
+                >
+
+                <span class="remove_item">X</span>
+            </div>
+        {% endif %}
+    </div>
+    <button class="add_item">Adicionar novo passo</button>
+</div>
+
+{# INFORMATIONS #}
+<div class="card">
+    <div class="minititle">Informações Adicionais</div>
+    <textarea 
+        name="informations"
+        id="informations"
+        cols="30"rows="10"
+    >{{recipe.information}}</textarea>
+</div>
