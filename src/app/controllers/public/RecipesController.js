@@ -14,7 +14,7 @@ module.exports = {
 
       const recipes = await Promise.all(recipePromisse);
 
-      console.log(recipes);
+      // console.log(recipes);
       res.render('public/home.njk', { recipes });
     } catch (err) {
       return res.render('admin/recipes/index', {
