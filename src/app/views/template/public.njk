@@ -22,13 +22,12 @@
                         <li class="f-nav__item"><a class="f-nav__link" href="/recipes">Receitas</a></li>
                         <li class="f-nav__item"><a class="f-nav__link" href="/admin/chefs">Chefes</a></li>
                     </ul>
+
+                    {% block search %}{% endblock %}
                 </div>
             </header>
 
-            {% block content %}
-            
-            {% endblock %}
-
+            {% block content %}{% endblock %}
     </main>
 
     <footer class="f-footer">

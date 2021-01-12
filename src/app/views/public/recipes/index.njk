@@ -1,0 +1,13 @@
+{% extends 'template/public.njk' %}
+{% from '../../components/macros/public/recipe-list.njk' import list as recipeList %}
+
+
+{% block search %}
+     {% include '../../components/filter.njk' %}
+{% endblock %}
+
+{% block content %}
+<div class="recipes container">
+     {{ recipeList(null, recipes, null, null) }}
+</div>
+{% endblock %}

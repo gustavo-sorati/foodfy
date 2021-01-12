@@ -2,18 +2,19 @@
   width: 100%;
 
   &__wrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: 220px 1fr 1fr;
     align-items: center;
 
     min-height: 80px;
   }
 
   &__logo {
-    width: 360px;
+    width: 200px;
   }
 
   &__navigation {
-    width: 100%;
+    // width: 100%;
     display: flex;
   }
 
@@ -42,6 +43,28 @@
         height: 1px;
         background-color: #000;
       }
+    }
+  }
+
+  // FILTER
+
+  &__filter {
+    display: flex;
+    width: 320px;
+    flex: 1;
+
+    &__input {
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+    }
+
+    &__search {
+      background-color: $purple;
+      color: white;
+      width: 100px;
+      margin-left: 5px;
     }
   }
 }

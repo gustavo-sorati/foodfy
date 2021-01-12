@@ -1,0 +1,40 @@
+{% macro list(title, recipes, elements, link) %}
+<section class="f-recipes_list separate">
+        {% if title %}
+            <div class="f-recipes_list__header">
+                <h1 class="f-recipes_list__header__title">{{title}}</h1>
+            </div>
+        {% endif %}
+
+        {% for recipe in recipes%}
+            {% if elements %}
+                {% if loop.index0 < elements %}
+                    <div class="f-recipes_list__card">
+                        <img class="f-recipes_list__image" src="{{recipe.image}}" alt="{{recipe.title}}">
+                            
+                        <div class="f-recipes_list__informations">
+                            <h3 class="f-recipes_list__informations__title">{{recipe.title}}</h3>
+                            <p class="f-recipes_list__informations__author">por {{recipe.chef_name}}</p>
+                            {% if link %}
+                                <a href="/recipes/{{recipe.id}}">Visualizar</a>
+                            {% endif %}
+                            
+                        </div>     
+                    </div>
+                {% endif %}
+            {% else %}
+                <a href="/recipes/{{recipe.id}}">
+                    <div class="f-recipes_list__card">
+                        <img class="f-recipes_list__image" src="{{recipe.image}}" alt="{{recipe.title}}">
+                                
+                        <div class="f-recipes_list__informations">
+                            <h3 class="f-recipes_list__informations__title">{{recipe.title}}</h3>
+                            <p class="f-recipes_list__informations__author">por {{recipe.chef_name}}</p>
+                                {# <a href="/recipes/{{recipe.id}}">Visualizar</a> #}
+                        </div>     
+                    </div>
+                </a>
+            {% endif %}
+        {% endfor %}
+</section>
+{% endmacro %}
