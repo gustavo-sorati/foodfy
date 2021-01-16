@@ -1,28 +1,14 @@
-{% extends 'admin/layout.njk' %}
+{% extends 'templates/layouts/admin.njk' %}
+{% from '../../templates/macros/admin/recipe-content.njk' import recipeContent %}
 
-{% block css %}
-<link rel="stylesheet" href="/styles/admin/index.css">
+{% block css%}
+<link rel="stylesheet" href="/styles/admin/recipes.css">
 {% endblock %}
 
-{# {% extends 'admin/recipes/filter.njk' %} #}
-
 {% block content %}
-    <section class="management-wrapper container">
-        <div class="management">
-            <h1 class="title">Gerenciar receitas</h1>
+<section class="recipes-content container">
 
-            {% for recipe in recipes %}
-                <div class="recipes">
-                    <img src="{{recipe.image}}" alt="{{recipe.title}}">
-                    
-                    <div class="info">
-                        <h3>{{recipe.title}}</h3>
-                        <p>por {{recipe.author}}</p>
-                        <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
-                    </div>     
-                </div>
-            {% endfor %}
-
-        </div>
-    </section>
+    {{recipeContent('Gerenciar Receitas', recipes)}}
+    
+</section>
 {% endblock %}

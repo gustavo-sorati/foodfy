@@ -1,0 +1,139 @@
+.recipes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.recipes__title {
+    grid-column: 1 / 3;
+    font-size: 1.5rem;
+
+    margin-bottom: 20px;
+}
+
+.recipes__card {
+    display: grid;
+    grid-template-columns: 172px 1fr;
+    justify-content: space-between;
+    gap: 20px;
+
+}
+
+.recipes__card__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.recipes__card__image {
+    object-fit: cover;
+    border-radius: 8px;
+
+    height: 80px;
+    width: 100%;
+}
+
+.recipes__card__title {
+    font-size: 1.125rem;
+    font-weight: normal;
+}
+
+.recipes__card__author {
+    font-size: 14px;
+    color: #777;
+}
+
+.recipes__card__info a {
+    color: var(--purple);
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+
+/* RECIPE SHOW */
+
+.recipes-show__control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.recipes-show__informations {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.recipes-show__informations img {
+    object-fit: cover;
+    max-height: 280px;
+    width: 100%;
+    border-radius: 16px;
+    margin-bottom: 50px;
+
+}
+
+.recipes-show__informations__title {
+    font-size: 2rem;
+}
+
+.recipes-show__informations p {
+    font-size: 1.25rem;
+    color: #777;
+}
+
+.recipes-show__cards {
+    margin-bottom: 40px;
+}
+
+.recipes-show__cards__info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.recipes-show__cards__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.recipes-show__cards__span {
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #999;
+
+    cursor: pointer;
+}
+
+.recipes-show__cards__itens {
+    opacity: 1;
+    display: block;
+}
+
+.recipes-show__cards__itens li,
+.recipes-show__cards__itens p {
+    font-size: 1.125rem;
+    color: #444;
+    line-height: 28px;
+}
+
+.recipes-show__cards__itens li {
+    list-style-type: '- ';
+    margin-left: 10px;
+}
+
+.hidden {
+    opacity: 0;
+    display: none;
+}
+
+.button-edit {
+    background-color: var(--purple);
+
+}
+
+/* RECIPE CREATE */
+

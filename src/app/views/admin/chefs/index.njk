@@ -1,8 +1,15 @@
-{% extends 'admin/layout.njk' %}
+{% extends 'templates/layouts/admin.njk' %}
+{% from '../../../components/macros/admin/chef-list.njk' import chef_list as chefList%}
+
+{% block search %}
+{% include 'components/filter.njk'%}
+{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="/styles/admin/index.css">
 {% endblock %}
+
+{{ chefList('Gerenciar chefes', chefs)}}
 
 {% block content %}
     <section class="management-wrapper container">

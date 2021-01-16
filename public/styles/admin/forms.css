@@ -1,16 +1,11 @@
-input, textarea, select {
-    padding: 15px 20px;
-    width: 100%;
-    border: 1px solid #ddd;
+input,
+textarea,
+select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: transparent;
+    width: 100%;
 }
-
-option {
-    background-color: transparent;
-
-}
-
 
 .form-edit {
     position: relative;
@@ -115,9 +110,19 @@ button:hover {
     filter: brightness(.7);
 }
 
-.form-edit .button {
+.form {
+    position: relative;
+}
+
+.form .button {
     position: absolute;
     top: 3px;
+}
+
+.form button.create {
+    top: 0;
+    right: 0;
+
 }
 
 .form-edit button.edit {
@@ -125,7 +130,7 @@ button:hover {
 }
 
 .form-edit button.delete {
-    right: 140px;
+    right: 180px;
 }
 
 

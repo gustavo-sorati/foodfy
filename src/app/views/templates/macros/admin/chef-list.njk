@@ -1,0 +1,23 @@
+{% macro chef_list(title, chefs) %}
+<section class="f-recipes_list separate">
+        {% if title %}
+            <div class="f-recipes_list__header">
+                <h1 class="f-recipes_list__header__title">{{title}}</h1>
+            </div>
+        {% endif %}
+
+        {% for chef in chefs%}
+                <a href="/recipes/{{chef.id}}">
+                    <div class="f-recipes_list__card">
+                        <img class="f-recipes_list__image" src="{{chef.image}}" alt="{{chef.title}}">
+                                
+                        <div class="f-recipes_list__informations">
+                            <h3 class="f-recipes_list__informations__title">{{chef.title}}</h3>
+                            <p class="f-recipes_list__informations__author">por {{chef.chef_name}}</p>
+                                <a href="/recipes/{{chef.id}}">Visualizar</a>
+                        </div>     
+                    </div>
+                </a>
+        {% endfor %}
+</section>
+{% endmacro %}

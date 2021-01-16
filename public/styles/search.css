@@ -1,0 +1,7 @@
+.nav__filter {
+     justify-self: flex-end;
+}
+
+.nav__filter__button {
+     background-color: var(--purple);
+}

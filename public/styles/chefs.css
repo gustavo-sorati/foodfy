@@ -1,0 +1,37 @@
+.chef-content {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     align-items: center;
+     justify-content: center;
+
+     gap: 10px;
+}
+
+.chef-content__title {
+     grid-column: 1/5;
+}
+
+.chef-content__list {
+     display: grid;
+     grid-template-columns: 64px 1fr;
+     justify-content: center;
+     align-items: center;
+     gap: 20px;
+}
+
+.chef-content__list__avatar {
+     height: 64px;
+     object-fit: cover;
+     border-radius: 50%;
+}
+
+
+.chef-content__list__information h4{
+     font-size: 1.125rem;
+     font-weight: 400;
+}
+
+.chef-content__list__information p{
+     color: #666;
+     font-size: 0.875rem;
+}

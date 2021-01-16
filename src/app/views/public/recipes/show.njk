@@ -1,22 +1,17 @@
-{% extends 'templates/layouts/admin.njk' %}
+{% extends 'templates/layouts/public.njk' %}
 
 {% block css %}
-<link rel="stylesheet" href="/styles/admin/recipes.css">
+<link rel="stylesheet" href="/styles/recipes.css">
 {% endblock %}
 
 {% block content %}
 <section class="recipes-show container">
 
-    <div class="recipes-show__control">
-            <h2 class="subtitle">Receita: {{recipe.title}}</h1>
-            <a href="/admin/recipes/{{recipe.id}}/edit" class="button button-edit">Editar receita</a>
-    </div>
-
     <section class="recipes-show__informations">
         <img src="{{recipe.image}}" alt="{{recipe.title}}">
 
         <h1 class="recipes-show__informations__title">{{recipe.title}}</h1>
-        <p>por {{recipe.chef_name}}</p>
+        <p>por {{recipe.name}}</p>
     </section>
 
 
@@ -28,6 +23,7 @@
 
             <div class="recipes-show__cards__info">
                 <div class="recipes-show__cards__title">Ingredientes</div>
+                <div class="recipes-show__cards__span">Esconder</div>
             </div>
 
             <ul class="recipes-show__cards__itens">
@@ -44,6 +40,7 @@
 
             <div class="recipes-show__cards__info">
                 <div class="recipes-show__cards__title">Modo de preparo</div>
+                <div class="recipes-show__cards__span">Esconder</div>
             </div>
 
             <div class="recipes-show__cards__itens">
@@ -61,6 +58,7 @@
         <div class="recipes-show__cards">
             <div class="recipes-show__cards__info">
                 <div class="recipes-show__cards__title">Informações Adicionais</div>
+                <div class="recipes-show__cards__span">Esconder</div>
             </div>
             <div class="recipes-show__cards__itens">
                 <p>{{recipe.information}}</p>

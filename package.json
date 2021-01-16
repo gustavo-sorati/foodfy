@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "dev": "npm-run-all -p nodemon sass-build browser-sync",
+    "dev": "npm-run-all -p nodemon browser-sync",
+    "dev-sass": "npm-run-all -p nodemon sass-build browser-sync",
     "nodemon": "nodemon src/server.js",
     "browser-sync": "browser-sync start --proxy 'http://localhost:5000' --files 'public, src/app/views, *.njk'",
     "sass-build": "sass --watch public/styles/scss/main.scss:public/styles/main.css"

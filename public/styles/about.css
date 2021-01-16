@@ -1,0 +1,25 @@
+.about {
+     margin-bottom: 20px;
+}
+
+.about__title {
+     font-size: 20px;
+     margin-bottom: 40px;
+} 
+
+.about__title--big {
+     font-size: 2rem;
+     margin-bottom: 40px;
+} 
+ 
+.about__text {
+     font-size: 18px;
+     color: #444;
+     line-height: 28px;
+ 
+     margin-bottom: 20px;
+}
+
+.about__text:last-child{
+     margin-bottom: 40px;
+}

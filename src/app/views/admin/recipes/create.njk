@@ -1,11 +1,11 @@
-{% extends 'admin/layout.njk' %}
+{% extends 'templates/layouts/admin.njk' %}
 
 {% block css %}
 <link rel="stylesheet" href="/styles/admin/forms.css">
 {% endblock %}
 
 {% block content %}
-    <section class="form-create form container">
+    <section class="recipes-create form container">
         
         <form action="/admin/recipes" method="POST">
             

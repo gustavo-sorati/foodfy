@@ -1,13 +1,21 @@
-{% extends 'template/public.njk' %}
-{% from '../../components/macros/public/recipe-list.njk' import list as recipeList %}
+{% extends 'templates/layouts/public.njk' %}
+{% from '../../templates/macros/public/recipe_list.njk' import recipelist %}
 
+{% block css %}
+<link rel="stylesheet" href="/styles/recipes.css">
+<link rel="stylesheet" href="/styles/search.css">
+{% endblock %}
 
 {% block search %}
-     {% include '../../components/filter.njk' %}
+     {% include '../../templates/includes/filter.njk' %}
 {% endblock %}
 
 {% block content %}
-<div class="recipes container">
-     {{ recipeList(null, recipes, null, null) }}
+<div class="recipes__wrapper container">
+     {{ recipelist(null, recipes) }}
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="scripts/public/redirect_to_recipe.js"></script>
 {% endblock %}

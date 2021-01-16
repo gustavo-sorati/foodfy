@@ -1,28 +1,23 @@
 const express = require('express');
-const SearchController = require('../app/controllers/SearchController');
-const Recipe = require('../app/models/Recipe');
-
+const PublicController = require('../app/controllers/public/PublicController');
 const RecipeController = require('../app/controllers/public/RecipesController');
+const ChefController = require('../app/controllers/public/ChefsController');
+const SearchController = require('../app/controllers/SearchController');
 
 const routes = express.Router();
 
-routes.get('/', RecipeController.index);
+// Public
+routes.get('/', PublicController.index);
+routes.get('/about', PublicController.about);
 
-routes.get('/about', (req, res) => {
-  res.render('public/about.njk');
-});
+// Recipes
+routes.get('/recipes', RecipeController.index);
+routes.get('/recipes/:id', RecipeController.show);
 
-routes.get('/recipes', RecipeController.recipesAll);
+// Chefs
+routes.get('/chefs', ChefController.index);
 
-routes.get('/recipes/:id', async (req, res) => {
-  const { id } = req.params;
-
-  let response = await Recipe.findById2(id);
-  let recipe = response.rows[0];
-
-  res.render('common/recipes/show.njk', { recipe });
-});
-
+// Search
 routes.get('/search', SearchController.search);
 
 module.exports = routes;

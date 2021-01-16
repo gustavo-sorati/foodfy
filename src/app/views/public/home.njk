@@ -1,23 +1,32 @@
-{% extends 'template/public.njk' %}
-{% from '../components/macros/public/recipe-list.njk' import list as recipeList %}
+{% extends 'templates/layouts/public.njk' %}
+{% from '../templates/macros/public/recipe_list.njk' import recipelist %}
+
+{% block css %}
+<link rel="stylesheet" href="styles/home.css">
+<link rel="stylesheet" href="styles/search.css">
+{% endblock %}
+
+{% block search %}
+{% include 'templates/includes/filter.njk'%}
+{% endblock %}
 
 {% block content %}
 <section class="home container">
 
-    <section class="f-banner separate">
-        <div class="f-banner__information">
-            <div class="f-banner__information__message">
-                <h1 class="f-banner__title">As melhores receitas</h1>
-                <p class="f-banner_message">Aprenda a contrutir os melhores pratos com receitas criadas por profissionais do mundo inteiro.</p>
+    <section class="banner separate">
+        <div class="banner__information">
+            <div class="banner__information__msg">
+                <h1 class="banner__information__title">As melhores receitas</h1>
+                <p class="banner__information__text">Aprenda a contrutir os melhores pratos com receitas criadas por profissionais do mundo inteiro.</p>
             </div>
             
-            <div class="f-banner__bg">
-                <img class="f-banner__bg__image"src="/assets/chef.png" alt="">
+            <div class="banner__bg">
+                <img class="banner__bg__image"src="/assets/chef.png" alt="">
             </div>
         </div>
     </section>
 
-    {{ recipeList('Mais Acessadas', recipes, 6) }}
+    {{ recipelist('Mais Acessadas', recipes, 6) }}
 
 </section>
 {% endblock %}
@@ -32,5 +41,5 @@
     </div>
 </div>
 
-<script src="scripts/modalController.js"></script>
+<script src="scripts/public/modal_controller.js"></script>
 {% endblock %}

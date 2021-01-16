@@ -1,0 +1,12 @@
+{% extends 'templates/layouts/public.njk' %}
+{% from '../../templates/macros/public/chef-list.njk' import cheflist%}
+
+{% block css %}
+<link rel="stylesheet" href="/styles/chefs.css">
+{% endblock %}
+
+{% block content %}
+
+{{ cheflist('', chefs)}}
+
+{% endblock %}
