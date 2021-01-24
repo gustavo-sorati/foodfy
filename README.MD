@@ -12,7 +12,7 @@
 
 <h2>Desafios em progresso</h2>
 <ul>
-<li><a href="https://github.com/rocketseat-education/bootcamp-launchbase-desafios-04">bootcamp-launchbase-desafios-04:administração-foodfy</a></li>
+<li><a href="https://github.com/rocketseat-education/bootcamp-launchbase-desafios-05/blob/master/desafios/05-persistindo-dados-foodfy.md">bootcamp-launchbase-desafios-05:persistindo-dados-no-Foodfy</a></li>
 </ul>
 
 <h2>Desafios extras pendentes</h2>
