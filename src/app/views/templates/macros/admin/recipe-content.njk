@@ -1,19 +1,34 @@
-{% macro recipeContent(title, recipes) %}
+{% macro recipeContent(title, recipes, chef) %}
 <section class="recipes separate">
-        {% if title %}
-            <h1 class="recipes__title">{{title}}</h1>
-        {% endif %}
+    {% if title %}
+        <h1 class="recipes__title">{{title}}</h1>
+    {% endif %}
 
+    {% if chef %}
         {% for recipe in recipes%}
-                <div class="recipes__card">
-                    <img class="recipes__card__image" src="{{recipe.image}}" alt="{{recipe.title}}">
-                                
-                    <div class="recipes__card__info">
-                        <h3 class="recipes__card__title">{{recipe.title}}</h3>
-                        <p class="recipes__card__author">por {{recipe.chef_name}}</p>
-                        <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
-                    </div>     
+            <div class="recipes__card">
+                <img class="recipes__card__image" src="{{recipe.image}}" alt="{{recipe.title}}">
+
+                <div class="recipes__card__info">
+                    <h3 class="recipes__card__title">{{recipe.title}}</h3>
+                    <p class="recipes__card__author">por {{chef.name}}</p>
+                    <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
                 </div>
+            </div>
         {% endfor %}
+    {% else %}
+        {% for recipe in recipes%}
+        <div class="recipes__card">
+            <img class="recipes__card__image" src="{{recipe.image}}" alt="{{recipe.title}}">
+
+            <div class="recipes__card__info">
+                <h3 class="recipes__card__title">{{recipe.title}}</h3>
+                <p class="recipes__card__author">por {{recipe.chef_name}}</p>
+                <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+
 </section>
 {% endmacro %}

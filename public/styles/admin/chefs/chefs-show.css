@@ -1,0 +1,54 @@
+.chefs-content {
+     margin-top: 50px;
+     margin-bottom: 50px;
+}
+
+.chefs__show__control {
+     position: relative;
+}
+
+.chefs__show__control {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+
+     margin-bottom: 50px;
+}
+
+.chefs__show__control h3 {
+     font-size: 1.5rem;
+}
+
+.button-edit {
+     background-color: var(--purple);
+     top: 0;
+}
+
+/* Avatar */
+.chefs__show__avatar {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     margin-bottom: 50px;
+}
+
+.chefs__show__avatar img {
+     max-width: 200px;
+     max-height: 200px;
+     height: 100%;
+     object-fit: cover;
+
+     border-radius: 50%;
+
+     margin-bottom: 30px;
+}
+
+.chefs__show__avatar h1 {
+     font-size: 2rem;
+}
+
+.chefs__show__avatar span {
+     color: #777;
+     font-size: 1.25rem;
+}

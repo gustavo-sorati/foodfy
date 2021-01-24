@@ -7,12 +7,27 @@ select {
     width: 100%;
 }
 
+.chefs-create,
+.chefs-edit {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
 .form-edit {
     position: relative;
 }
 
+.form form:first-child {
+    position: relative;
+}
+
+
 .form {
     margin-bottom: 60px;
+}
+
+.header {
+    line-height: 42px;
 }
 
 .form h1 {
@@ -21,6 +36,11 @@ select {
 
 .form .card {
     margin-bottom: 30px;
+}
+
+.form .card .title {
+    font-weight: 700;
+    margin-bottom: 10px;
 }
 
 .card .minititle {
@@ -130,7 +150,7 @@ button:hover {
 }
 
 .form-edit button.delete {
-    right: 180px;
+    right: 200px;
 }
 
 

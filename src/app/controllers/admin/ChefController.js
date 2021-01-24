@@ -3,24 +3,21 @@ const Recipe = require('../../models/Recipe');
 
 module.exports = {
   async index(req, res) {
-    let chefs = await Chef.findAll();
+    let results = await Chef.findAll();
+    let chefs = results.rows;
 
-    return res.render('admin/chefs/index.njk', { chefs: chefs.rows });
+    return res.render('admin/chefs/index.njk', { chefs });
   },
   async show(req, res) {
     const { id } = req.params;
 
-    let chef = await Chef.findById(id);
-    let chefRecipes = await Recipe.findByChefId(id);
+    let results = await Chef.findById(id);
+    let chef = results.rows[0];
 
-    // console.log(chefRecipes.rows);
-    if (!chef) return res.send('Chef not found!!!');
-    // if (!chefRecipes) chefRecipes = null;
-
-    return res.render('admin/chefs/show.njk', {
-      chef: chef.rows[0],
-      recipes: chefRecipes.rows,
-    });
+    chef.recipes = (await Recipe.findByChefId(chef.id)).rows
+    
+    console.log(chef)
+    return res.render('admin/chefs/show.njk', { chef });
   },
   create(req, res) {
     return res.render('admin/chefs/create.njk');
@@ -39,6 +36,8 @@ module.exports = {
   async post(req, res) {
     const data = req.body;
 
+    if(data === '') return res.send('Pleash fill all fields')
+
     let response = await Chef.create(data);
 
     return res.redirect(`/admin/chefs/${response}`);
@@ -49,7 +48,7 @@ module.exports = {
     try {
       let response = await Chef.update(req.body, id);
 
-      return res.redirect(`admin/chefs/${id}`);
+      return res.redirect(`/admin/chefs/${id}`);
     } catch (err) {
       console.log(err);
     }

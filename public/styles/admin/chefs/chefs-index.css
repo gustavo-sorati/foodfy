@@ -1,0 +1,87 @@
+.chefs {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     justify-content: center;
+     align-items: center;
+     gap: 20px 10px;
+
+     margin-top: 60px;
+}
+
+.chefs__header {
+     grid-column: 1/5;
+     margin-bottom: 10px;
+}
+
+.chefs__header-big {
+     font-size: 1.5rem;
+}
+
+.chefs__card {
+     display: grid;
+     grid-template-columns: 64px 1fr;
+     align-items: center;
+     justify-content: center;
+     gap: 20px;
+}
+
+.chefs__card__avatar {
+     width: 64px;
+     height: 64px;
+     border-radius: 50%;
+     object-fit: cover;
+}
+
+.chefs__info span {
+     font-size: 1.125rem;
+     margin-bottom: 10px;
+     display: block;
+}
+
+.chefs__info a {
+     font-size: 0.875rem;
+     font-weight: 700;
+}
+
+@media (min-width: 512px) and (max-width: 768px){
+     .chefs {
+          grid-template-columns: repeat(3, 1fr);
+     }
+     
+     .chefs__header {
+          grid-column: 1/4;
+     }
+}
+
+@media (max-width: 512px){
+     .chefs {
+          grid-template-columns: repeat(1, 1fr);
+     }
+     
+     .chefs__header {
+          grid-column: 1/2;
+     }
+
+     .chefs__card {
+          grid-template-columns: 80px 1fr;
+          gap: 20px;
+     }
+
+     .chefs__card__avatar {
+          width: 80px;
+          height: 80px;
+     }
+
+     .chefs__info {
+          width: 100%;
+          text-align: center;
+     }
+
+     .chefs__info span {
+          font-size: 1.5rem;
+     }
+
+     .chefs__info a {
+          font-size: 1.2rem;
+     }
+}

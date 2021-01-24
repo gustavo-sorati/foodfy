@@ -1,8 +1,11 @@
 {% extends 'templates/layouts/admin.njk' %}
 
+{% block css%}
+<link rel="stylesheet" href="/styles/admin/forms.css">
+{% endblock %}
 
 {% block content %}
-    <section class="form form-edit container">
+    <section class="chefs-edit form form-edit container">
         
         <form action="/admin/chefs?_method=PUT" method="POST">
             
@@ -29,7 +32,3 @@
         </form>
     </section>
 {% endblock %}
-
-{% block scripts %}
-    <script src="/scripts/admin/listsController.js"></script>
-{% endblock%}

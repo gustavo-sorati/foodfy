@@ -1,32 +1,19 @@
 {% extends 'templates/layouts/admin.njk' %}
-{% from '../../../components/macros/admin/chef-list.njk' import chef_list as chefList%}
+{% from '../../templates/macros/admin/chef-content.njk' import cheflist %}
 
-{% block search %}
-{% include 'components/filter.njk'%}
-{% endblock %}
+{# {% block search %}
+{% include '../../templates/includes/filter.njk'%}
+{% endblock %} #}
 
 {% block css %}
-<link rel="stylesheet" href="/styles/admin/index.css">
+<link rel="stylesheet" href="/styles/admin/chefs/chefs-index.css">
 {% endblock %}
 
-{{ chefList('Gerenciar chefes', chefs)}}
 
 {% block content %}
-    <section class="management-wrapper container">
-        <div class="management chefs">
-            <h1 class="title">Gerenciar chefes</h1>
+    <section class="chefs-content container">
 
-            {% for chef in chefs %}
-                <div class="recipes">
-                    <img src="{{chef.avatar_url}}" alt="{{chef.name}}">
-                    
-                    <div class="info">
-                        <h3>{{chef.name}}</h3>
-                        <a href="/admin/chefs/{{chef.id}}">Visualizar</a>
-                    </div>     
-                </div>
-            {% endfor %}
+            {{ cheflist('Gerenciar chefes', chefs)}}
 
-        </div>
     </section>
 {% endblock %}
