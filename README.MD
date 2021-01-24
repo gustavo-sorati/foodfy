@@ -7,11 +7,12 @@
 <ul>
     <li><a href="https://github.com/rocketseat-education/bootcamp-launchbase-desafios-02"><s>bootcamp-launchbase-desafios-02:construindo-foodfy</s></a></li>
     <li><a href="https://github.com/rocketseat-education/bootcamp-launchbase-desafios-03"><s>bootcamp-launchbase-desafios-03:refatorando-foodfy</s></a></li>
+    <li><s><a href="https://github.com/rocketseat-education/bootcamp-launchbase-desafios-04">bootcamp-launchbase-desafios-04:administração-foodfy</a></s></li>
 </ul>
 
 <h2>Desafios em progresso</h2>
 <ul>
-    <li><a href="https://github.com/rocketseat-education/bootcamp-launchbase-desafios-04">bootcamp-launchbase-desafios-04:administração-foodfy</a></li>
+<li><a href="https://github.com/rocketseat-education/bootcamp-launchbase-desafios-04">bootcamp-launchbase-desafios-04:administração-foodfy</a></li>
 </ul>
 
 <h2>Desafios extras pendentes</h2>
