@@ -6,22 +6,22 @@
 
 {% block content %}
     <section class="form form-edit container">
-        
-        <form action="/admin/recipes?_method=PUT" method="POST">
-            
-            <h1 class="title">Editando Receita</h1>            
+
+        <form action="/admin/recipes?_method=PUT" enctype="multipart/form-data" method="POST" >
+
+            <h1 class="title">Editando Receita</h1>
 
             <input type="hidden" name="id" value={{recipe.id}}>
 
             <div class="fields">
-                {% include 'admin/recipes/fields.njk'%}       
+                {% include 'admin/recipes/fields.njk'%}
             </div>
 
-        
+
             <button class="button edit" type="submit">Salvar Receita</button>
 
         </form>
-        
+
         <form action="">
             <input type="hidden" name="id" id={{recipe.id}}>
             <button class="button delete" type="submit">Deletar</button>
@@ -31,4 +31,5 @@
 
 {% block scripts %}
     <script src="/scripts/admin/list-input-controller.js"></script>
+    <script src="/scripts/admin/file-input-controller.js"></script>
 {% endblock%}

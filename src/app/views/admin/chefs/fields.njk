@@ -1,7 +1,7 @@
 <div class="card">
     <div class="title">Nome</div>
 
-    <input 
+    <input
         type="text"
         id="name"
         name="name"
@@ -10,13 +10,17 @@
 </div>
 
 {# IMAGE #}
-<div class="card">
+<div class="card card__image">
     <div class="title">Avatar</div>
 
-    <input 
-        type="text"
+
+    <label for="image" class="avatar_url">Enviar avatar</label>
+    <input
+        type="file"
+
         id="image"
         name="avatar_url"
         value="{{chef.avatar_url}}"
+        accept="image/*"
     >
 </div>

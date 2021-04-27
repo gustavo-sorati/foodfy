@@ -1,8 +1,9 @@
 const express = require('express');
-const nunjucks = require('nunjucks');
 const methodOverride = require('method-override');
+const nunjucks = require('nunjucks');
 
 const routes = require('./routes');
+
 const server = express();
 
 server.use(express.static('public'));

@@ -6,18 +6,18 @@
 
 {% block content %}
     <section class="chefs-create form form-create container">
-        
-        <form action="/admin/chefs" method="POST">
-            
+
+        <form action="/admin/chefs" method="POST" enctype="multipart/form-data">
+
             <div class="header">
                 <h1>Criando Chef</h2>
-            </div>            
-
-            <div class="fields">
-                {% include 'admin/chefs/fields.njk'%}       
             </div>
 
-        
+            <div class="fields">
+                {% include 'admin/chefs/fields.njk'%}
+            </div>
+
+
             <button class="button create" type="submit">Salvar Chef</button>
         </form>
     </section>

@@ -1,5 +1,7 @@
 const Chef = require('../../models/Chef');
 const Recipe = require('../../models/Recipe');
+const File = require('../../models/File');
+const RecipeFile = require('../../models/RecipeFile');
 
 module.exports = {
   async index(req, res) {
@@ -9,15 +11,59 @@ module.exports = {
     return res.render('admin/chefs/index.njk', { chefs });
   },
   async show(req, res) {
-    const { id } = req.params;
+    try {
+      const { id } = req.params;
 
-    let results = await Chef.findById(id);
-    let chef = results.rows[0];
+      const chef = await Chef.find(id);
+      chef.file = await File.findOne({where: {id: chef.file_id}});
+      chef.file.src = `${req.protocol}://${req.headers.host}${chef.file.path}`.replace('public', '');
 
-    chef.recipes = (await Recipe.findByChefId(chef.id)).rows
-    
-    console.log(chef)
-    return res.render('admin/chefs/show.njk', { chef });
+      async function getImages(recipe_id) {
+        let files = await Recipe.file(recipe_id);
+        console.log(files)
+        // files = files.map(file => ({
+        //   ...files,
+        //   src : `${req.protocol}://${req.headers.host}${file.path}`.replace('public', '')
+        // }));
+
+
+        return files;
+      }
+
+      const recipes = await Chef.findRecipes(chef.id);
+      const recipesPromise = recipes.map(async recipe => {
+        const files = await getImages(recipe.id);
+        recipe.image = files;
+        return recipe
+      })
+      chef.recipes = await Promise.all(recipesPromise)
+
+      // console.log(chef)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      return res.render('admin/chefs/show.njk', { chef });
+    } catch(err) {
+      console.log('Erro no admin show' + err)
+    }
   },
   create(req, res) {
     return res.render('admin/chefs/create.njk');
@@ -34,13 +80,26 @@ module.exports = {
   },
   // --------------------------------------------
   async post(req, res) {
-    const data = req.body;
+    try {
+      const data = req.body;
 
-    if(data === '') return res.send('Pleash fill all fields')
+      if(data === '') return res.send('Porfavor preencha todos os campos');
+      if(req.files.length === 0) return res.send('Porfavor envie sua foto');
 
-    let response = await Chef.create(data);
+      // console.log(req.files[0])
+      // Salvar Imagem
+      const file = await File.save(req.files[0].filename, req.files[0].path);
+      const file_id = file.rows[0].id;
 
-    return res.redirect(`/admin/chefs/${response}`);
+
+      const  response = await Chef.save(data, file_id);
+      const id = response.rows[0].id;
+
+
+      return res.redirect(`/admin/chefs/${id}`);
+    } catch (err) {
+      console.log('Erro no Post' + err);
+    }
   },
   async put(req, res) {
     const { id } = req.body;
@@ -60,7 +119,7 @@ module.exports = {
     let results = await Recipe.findByChefId(chef_id);
     let chefHasRecipe = results.rows;
 
-    console.log(chefHasRecipe);
+    // console.log(chefHasRecipe);
     if (chefHasRecipe.length)
       return res.send('Exclua as receitas do chefe primeiro');
 
@@ -69,3 +128,66 @@ module.exports = {
     return res.redirect('/admin/chefs');
   },
 };
+
+
+//show
+
+
+
+
+
+
+      // let chef = await Chef.findById(id);
+      // chef = chef.rows[0];
+
+      // let image = await File.FindById(chef.file_id);
+      // image = image.rows[0];
+
+      // let recipes = await Recipe.findByChefId(chef.id);
+      // // recipes = recipes.rows;
+
+      // //pega todos os file_id
+      // let recipesReferenceFilesPromise = recipes.rows.map(async(recipe) => {
+      //   return await RecipeFile.findByRecipeId(recipe.id);
+      // });
+      // let x = await Promise.all(recipesReferenceFilesPromise);
+      // // recipes.file_id = recipes.file_id.rows
+
+      // console.log(x)
+
+      // getRecipeImages
+      // let x = recipes.rows.map(async(recipe) => {
+      //   const image = await Recipe.teste(recipe.id);
+      //   return {
+      //     image
+      //   }
+      // })
+      // const z = await Promise.all(x)
+
+
+      // console.log(z.rows)
+
+
+
+
+
+
+      // let recipe_images = await Recipe.files(recipes.id)
+
+
+
+      // chef = {
+      //   ...chef,
+      //   image: {
+      //     ...image,
+      //     src: `${req.protocol}://${req.headers.host}${image.path}`.replace("public", '')
+      //   },
+      //   // recipes: [
+      //   //   {
+      //   //   ...recipes,
+      //   //   ingredients: recipes.ingredients
+      //   //   }
+      //   // ]
+      // }
+
+      // console.log(chef)

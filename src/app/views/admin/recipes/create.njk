@@ -6,15 +6,15 @@
 
 {% block content %}
     <section class="recipes-create form container">
-        
-        <form action="/admin/recipes" method="POST">
-            
+
+        <form action="/admin/recipes" method="POST" enctype="multipart/form-data">
+
             <h1 class="title">Criar nova receita</h2>
 
             <div class="fields">
-                {% include 'admin/recipes/fields.njk'%}       
+                {% include 'admin/recipes/fields.njk'%}
             </div>
-        
+
             <button class="button create" type="submit">Salvar Receita</button>
 
         </form>
@@ -23,5 +23,6 @@
 
 {% block scripts %}
     <script src="/scripts/admin/list-input-controller.js"></script>
+    <script src="/scripts/admin/file-input-controller.js"></script>
 {% endblock%}
 

@@ -1,3 +1,5 @@
+// Controla a adição de ingredients para receitas
+
 const lists = document.querySelectorAll('.list');
 let btnAddItem = document.querySelectorAll('.add_item');
 let btnRemoveItem = document.querySelectorAll('.remove_item');

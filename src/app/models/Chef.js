@@ -1,27 +1,58 @@
 const db = require('../../db');
 
 module.exports = {
-  findAll() {
-    return db.query('SELECT * FROM chefs');
+  async find(id) {
+    const results = await db.query(`
+      SELECT chefs.*, count(recipes) AS total_recipes
+      FROM chefs
+      LEFT JOIN recipes ON (chefs.id = recipes.chef_id)
+      WHERE chefs.id = $1
+      GROUP BY chefs.id`, [id]);
+
+    return results.rows[0];
   },
+  async findAll() {
+    const results = await db.query(`SELECT * FROM chefs`);
+
+    return results.rows;
+  },
+  async findRecipes(chef_id){
+    const results = await db.query(`
+      SELECT recipes.*
+      FROM recipes
+      WHERE recipes.chef_id = $1
+    `, [chef_id]);
+
+    return results.rows;
+  },
+
+
+
+
+
+
+
+
+
+
   findById(id) {
     let query = 'SELECT * FROM chefs WHERE id = $1';
 
     return db.query(query, [id]);
   },
-  create(data) {
+  save(data, id) {
     let query = `INSERT INTO chefs (
         name,
-        avatar_url
+        file_id
     ) VALUES ($1, $2) RETURNING ID`;
 
-    let values = [data.name, data.avatar_url];
+    let values = [data.name, id];
 
     let results = db.query(query, values);
-    return results.rows[0].id;
+    return results;
   },
   update(data, id) {
-    let query = `UPDATE chefs SET 
+    let query = `UPDATE chefs SET
         name = $1,
         avatar_url = $2
       WHERE id = $3`;

@@ -15,15 +15,15 @@
     </div>
 
     <section class="chefs__show__avatar">
-        <img src="{{chef.avatar_url}}" alt="{{chef.name}}">
+        <img src="{{chef.image.src}}" alt="{{chef.name}}">
 
         <h1>{{chef.name}}</h1>
-        <span class="chefs__show-qtde">{{chef.recipes.length}} 
-            Receita{% if chef.recipes.length > 1 %}s{% endif %}
+        <span class="chefs__show-qtde">
+          {{chef.total_recipes}} Receita{% if chef.total_recipes > 1 %}s{% endif %}
         </span>
     </section>
 
-    
+
     {{ recipeContent("Receitas", chef.recipes, chef)}}
 </section>
 {% endblock %}
