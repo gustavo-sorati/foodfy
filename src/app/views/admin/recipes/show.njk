@@ -18,8 +18,8 @@
     </div>
 
       <div class="show-images__childrens">
-        {% if images %}
-          {% for image in images %}
+        {% if recipe.files %}
+          {% for image in recipe.files %}
             <div class="show-images__children" onclick="ImagesController.changeImages(this)">
               <img src="{{image.src}}" id="{{image.id}}">
               <div></div>

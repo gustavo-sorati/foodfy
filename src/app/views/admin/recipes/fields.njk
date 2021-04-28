@@ -11,8 +11,8 @@
     </div>
 
     <div class="image-preview">
-      {% if images %}
-        {% for image in images %}
+      {% if recipe.images %}
+        {% for image in recipe.images %}
           <div  class="photo" id="{{image.id}}" onclick="PhotosUpload.excludePhoto(event)">
             <img src="{{image.src}}" />
             <i class="btnRemovePreview">
@@ -28,7 +28,7 @@
 </div>
 
 <div class="card">
-  <div class="minititle">Título da receita</div>
+  <div class="minititle">Autor da receita</div>
 
   <select name="chef_id" id="chef_id">
     {% for chef in chefs %}

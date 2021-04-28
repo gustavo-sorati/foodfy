@@ -2,15 +2,19 @@ const db = require('../../db/index');
 
 module.exports = {
   async findAll() {
-    return await db.query(`SELECT * FROM recipes`);
-  },
+    const results = await db.query(`
+      SELECT recipes.*, chefs.name as chef_name
+      FROM recipes
+      LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
+    `);
 
+    return results.rows;
+  },
   search(filter) {
     let query = `SELECT * FROM recipes WHERE title ILIKE '%${filter}%'`;
 
     return db.query(query);
   },
-
   async findById(id) {
     const results = await db.query(`
       SELECT recipes.*, chefs.name AS chef_name
@@ -73,7 +77,9 @@ module.exports = {
       id,
     ];
 
-    return db.query(query, values);
+    const results = await db.query(query, values);
+
+    return results.rows;
   },
   async file(id) {
     const results = await db.query(`

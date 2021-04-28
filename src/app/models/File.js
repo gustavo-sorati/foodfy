@@ -17,8 +17,8 @@ module.exports = {
     const results = await db.query(query);
     return results.rows[0];
   },
+  // save ok
   async save({ filename, path }) {
-    console.log(path)
     const query = `
       INSERT INTO files (
         name,
@@ -34,7 +34,7 @@ module.exports = {
 
     const results = await db.query(query, values);
 
-    return results.rows[0];
+    return results.rows[0].id;
   },
   async FindById(image_id){
     const query = `
@@ -46,20 +46,12 @@ module.exports = {
 
     return results.rows[0];
   },
-
-
-
-
-
-
-
-
-  removeByFileId(file_id){
+  async remove(file_id){
     const query = `
       DELETE FROM files
-      WHERE id = ${file_id}
+      WHERE files.id = ${file_id}
     `;
 
-    db.query(query);
+    await db.query(query);
   }
 }
