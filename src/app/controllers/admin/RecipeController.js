@@ -106,6 +106,7 @@ module.exports = {
     const { removed_files } = req.body;
     let files = req.files;
 
+    console.log(req.body)
     if(removed_files){
       const imagesToRemove = removed_files.split(',');
 

@@ -64,13 +64,15 @@ module.exports = {
   async update(data, id) {
     let query = `UPDATE recipes SET
       title = $1,
-      ingredients = $2,
-      preparation = $3,
-      information = $4
-    WHERE id = $5`;
+      chef_id = $2,
+      ingredients = $3,
+      preparation = $4,
+      information = $5
+    WHERE id = $6`;
 
     let values = [
       data.title,
+      data.chef_id,
       data.ingredients,
       data.preparations,
       data.informations,
