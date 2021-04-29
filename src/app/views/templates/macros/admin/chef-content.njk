@@ -8,12 +8,13 @@
 
         {% for chef in chefs%}
                 <div class="chefs__card">
-                    <img class="chefs__card__avatar" src="{{chef.avatar_url}}" alt="{{chef.name}}">
-                                
+                    <img class="chefs__card__avatar" src="{{chef.image.src}}" alt="{{chef.name}}">
+
                     <div class="chefs__info">
                         <span class="chefs__info">{{chef.name}}</span>
+                        <span class="chefs__qtde">{{chef.total_recipes}} Receita{% if chef.total_recipes > 1%}s{% endif %}</span>
                         <a href="/admin/chefs/{{chef.id}}">Visualizar</a>
-                    </div>     
+                    </div>
                 </div>
         {% endfor %}
 </section>

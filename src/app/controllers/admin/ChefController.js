@@ -5,9 +5,26 @@ const RecipeFile = require('../../models/RecipeFile');
 
 module.exports = {
   async index(req, res) {
-    let results = await Chef.findAll();
-    let chefs = results.rows;
+    let chefs = await Chef.findAll();
 
+    const chefsPromise = chefs.map(async chef => {
+      const file = await File.findOne({ where : { id: chef.id }});
+      let src = '';
+
+      if(file) {
+        file.src = `${req.protocol}://${req.headers.host}${file.path}`.replace("public", '');
+      } else {
+        src = 'http://placehold.it/940x280?text=Receita sem foto'
+      }
+
+      return {
+        ...chef,
+        image: file || { src }
+      }
+    });
+    chefs = await Promise.all(chefsPromise);
+
+    console.log(chefs)
     return res.render('admin/chefs/index.njk', { chefs });
   },
   async show(req, res) {

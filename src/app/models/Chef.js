@@ -15,7 +15,11 @@ module.exports = {
   // findAll ok
   async findAll() {
     const results = await db.query(`
-      SELECT * FROM chefs
+      SELECT chefs.*, count(recipes) as total_recipes
+      FROM chefs
+      LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
+      GROUP BY chefs.id
+      ORDER BY updated_at ASC
     `);
 
     return results.rows;

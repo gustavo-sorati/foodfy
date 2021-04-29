@@ -4,7 +4,6 @@ const File = require('../../models/File');
 const RecipeFile = require('../../models/RecipeFile');
 
 module.exports = {
-  // index ok
   async index(req, res) {
     try {
       const recipes = await Recipe.findAll();
@@ -39,13 +38,11 @@ module.exports = {
       console.log(err)
     }
   },
-  // create ok
   async create(req, res) {
     const chefs = await Chef.findAll();
 
     res.render('admin/recipes/create.njk', { chefs });
   },
-  // post ok
   async post(req, res) {
     try {
       if(req.files.length === 0) return res.send('Por favor envie ao menos uma imagem da receita');
@@ -71,7 +68,6 @@ module.exports = {
       console.log(err)
     }
   },
-  // show ok
   async show(req, res) {
     const { id } = req.params;
 
@@ -106,7 +102,6 @@ module.exports = {
     const { removed_files } = req.body;
     let files = req.files;
 
-    console.log(req.body)
     if(removed_files){
       const imagesToRemove = removed_files.split(',');
 
