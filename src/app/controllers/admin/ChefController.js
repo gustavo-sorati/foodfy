@@ -24,7 +24,6 @@ module.exports = {
     });
     chefs = await Promise.all(chefsPromise);
 
-    console.log(chefs)
     return res.render('admin/chefs/index.njk', { chefs });
   },
   async show(req, res) {
@@ -32,28 +31,32 @@ module.exports = {
       const { id } = req.params;
 
       const chef = await Chef.find(id);
-      chef.file = await File.findOne({where: {id: chef.file_id}});
-      chef.file.src = `${req.protocol}://${req.headers.host}${chef.file.path}`.replace('public', '');
 
-      async function getImages(recipe_id) {
-        let files = await Recipe.file(recipe_id);
-        console.log(files)
-        // files = files.map(file => ({
-        //   ...files,
-        //   src : `${req.protocol}://${req.headers.host}${file.path}`.replace('public', '')
-        // }));
+      chef.file = await File.findOne({ where: {id: chef.file_id}});
+      // chef.file.src = `${req.protocol}://${req.headers.host}${chef.file.path}`.replace('public', '');
 
+      // // // async function getImages(recipe_id) {
+      // // //   let files = await Recipe.file(recipe_id);
+      // // //   console.log(files)
 
-        return files;
-      }
+      // // //   if(files.length){
+      // // //     files = files.map(file => ({
+      // // //       ...files,
+      // // //       src : `${req.protocol}://${req.headers.host}${file.path}`.replace('public', '')
+      // // //     }));
+      // // //   }
 
-      const recipes = await Chef.findRecipes(chef.id);
-      const recipesPromise = recipes.map(async recipe => {
-        const files = await getImages(recipe.id);
-        recipe.image = files;
-        return recipe
-      })
-      chef.recipes = await Promise.all(recipesPromise)
+      // // //   return files;
+      // // // }
+
+      // // // const recipes = await Chef.findRecipes(chef.id);
+      // // // const recipesPromise = recipes.map(async recipe => {
+      // // //   const files = await getImages(recipe.id);
+      // // //   if(files) recipe.image = files;
+
+      // //   return recipe
+      // // })
+      // chef.recipes = await Promise.all(recipesPromise)
 
       // console.log(chef)
 
@@ -67,7 +70,7 @@ module.exports = {
 
 
 
-
+      console.log(chef)
 
 
 

@@ -1,7 +1,6 @@
 const db = require('../../db');
 
 module.exports = {
-  // find ok
   async find(id) {
     const results = await db.query(`
       SELECT chefs.*, count(recipes) AS total_recipes
