@@ -12,17 +12,31 @@
 {% block content %}
 <section class="recipes-show container">
 
-    <section class="recipes-show__informations">
-        <img src="{{recipe.image}}" alt="{{recipe.title}}">
+    <section class="show-images__container">
+    <div class="show-images__main">
+      <img src="{{recipe.files[0].src}}" alt="{{recipe.title}}" id="{{recipe.files[0].id}}">
+    </div>
 
-        <h1 class="recipes-show__informations__title">{{recipe.title}}</h1>
-        <p>por {{recipe.name}}</p>
-    </section>
+      <div class="show-images__childrens">
+        {% if recipe.files %}
+          {% for image in recipe.files %}
+            <div class="show-images__children" onclick="ImagesController.changeImages(this)">
+              <img src="{{image.src}}" id="{{image.id}}">
+              <div></div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    <h1 class="recipes-show__informations__title">{{recipe.title}}</h1>
+    <p>por {{recipe.chef_name}}</p>
+  </section>
 
 
     {# INGREDIENTS #}
     <section class="recipes-show__descriptions">
-        
+
         {% if recipe.ingredients.length > 0 %}
         <div class="recipes-show__cards">
 
@@ -76,4 +90,5 @@
 
 {% block scripts %}
 <script src="/scripts/public/recipe_flip-flop.js"></script>
+<script src="/scripts/admin/imagesController.js"></script>
 {% endblock%}

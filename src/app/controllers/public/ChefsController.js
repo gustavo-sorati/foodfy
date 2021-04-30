@@ -1,17 +1,28 @@
 const Chef = require('../../models/Chef');
 const Recipe = require('../../models/Recipe');
+const File = require('../../models/File');
 
 module.exports = {
   async index(req, res) {
-    let results = await Chef.findAll();
+    let chefs = await Chef.findAll();
 
-    let chefsPromisses = results.rows.map(async (chef) => {
-      chef.qtdeRecipes = await (await Recipe.findByChefId(chef.id)).rowCount;
-      return chef;
+    const chefsPromise = chefs.map(async chef => {
+      const file = await File.findOne({ where : { id: chef.file_id }});
+      let src = '';
+
+      if(file) {
+        file.src = `${req.protocol}://${req.headers.host}${file.path}`.replace("public", '');
+      } else {
+        src = 'http://placehold.it/940x280?text=Receita sem foto'
+      }
+
+      return {
+        ...chef,
+        image: file || { src }
+      }
     });
-
-    let chefs = await Promise.all(chefsPromisses);
-
-    res.render('public/chefs/index.njk', { chefs });
+    chefs = await Promise.all(chefsPromise);
+    console.log(chefs)
+    return res.render('public/chefs/index.njk', { chefs });
   },
 };

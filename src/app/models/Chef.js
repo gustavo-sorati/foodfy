@@ -11,6 +11,15 @@ module.exports = {
 
     return results.rows[0];
   },
+  async findImage(file_id){
+    const results = await db.query(`
+      SELECT files.*
+      from files
+      where files.id = $1
+    `, [file_id]);
+
+    return results.rows
+  },
   // findAll ok
   async findAll() {
     const results = await db.query(`
@@ -32,31 +41,23 @@ module.exports = {
 
     return results.rows;
   },
-
-
-
-
-
-
-
-
-
-
   findById(id) {
     let query = 'SELECT * FROM chefs WHERE id = $1';
 
     return db.query(query, [id]);
   },
-  save(data, id) {
-    let query = `INSERT INTO chefs (
-        name,
-        file_id
-    ) VALUES ($1, $2) RETURNING ID`;
+  async save(data, id) {
+    let query = `
+      INSERT INTO chefs (
+          name,
+          file_id
+      ) VALUES ($1, $2) RETURNING ID`;
 
     let values = [data.name, id];
 
-    let results = db.query(query, values);
-    return results;
+    let results = await db.query(query, values);
+
+    return results.rows[0].id;
   },
   update(data, id) {
     let query = `UPDATE chefs SET

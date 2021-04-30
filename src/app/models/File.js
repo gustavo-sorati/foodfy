@@ -18,7 +18,7 @@ module.exports = {
     return results.rows[0];
   },
   // save ok
-  async save({ filename, path }) {
+  async save(filename, path) {
     const query = `
       INSERT INTO files (
         name,
@@ -34,12 +34,13 @@ module.exports = {
 
     const results = await db.query(query, values);
 
-    return results.rows[0].id;
+    return results.rows[0];
   },
-  async FindById(image_id){
+  async findAllByRecipeId(recipe_id){
     const query = `
-      SELECT * FROM files
-      WHERE id = ${image_id}
+      SELECT *
+      FROM recipe_files
+      WHERE recipe_files.recipe_id = ${recipe_id}
     `;
 
     const results = await db.query(query);

@@ -50,18 +50,31 @@ module.exports = {
       const { chef_id, title, ingredients, preparations, informations } = req.body;
       const recipe_id = await Recipe.save(chef_id, title, ingredients, preparations, informations);
 
-      const filesPromise = req.files.map(async file => {
-        const file_id = await File.save({
-          filename: file.filename,
-          path: file.path
-        });
+      if(req.files.length > 1){
+        const filesPromise = req.files.map(async file => {
+          const files = await File.save(
+            file.filename,
+            file.path
+          );
 
-        await RecipeFile.save({
-          file_id,
-          recipe_id
+          await RecipeFile.save(
+            files.id,
+            recipe_id
+          );
         });
-      });
-      await Promise.all(filesPromise);
+        await Promise.all(filesPromise);
+      } else {
+        const file = await File.save(
+          req.files[0].filename,
+          req.files[0].path
+        );
+
+        console.log(file)
+        await RecipeFile.save(
+          file.id,
+          recipe_id
+        );
+      }
 
       return res.redirect(`/admin/recipes/${recipe_id}`);
     } catch (err) {
@@ -100,7 +113,6 @@ module.exports = {
   async put(req, res) {
     const { id } = req.body;
     const { removed_files } = req.body;
-    let files = req.files;
 
     if(removed_files){
       const imagesToRemove = removed_files.split(',');
@@ -110,17 +122,17 @@ module.exports = {
       })
     }
 
-    if(files){
-      const filesPromise = files.map(async file => {
-        const file_id = await File.save({
-          filename: file.filename,
-          path: file.path
-        });
+    if(req.files){
+      const filesPromise = req.files.map(async file => {
+        const files = await File.save(
+          file.filename,
+          file.path
+        );
 
-        await RecipeFile.save({
-          file_id,
-          recipe_id: id
-        });
+        await RecipeFile.save(
+          files.id,
+          id
+        );
 
       });
       files = await Promise.all(filesPromise);
@@ -130,4 +142,9 @@ module.exports = {
 
     return res.redirect(`/admin/recipes/${id}`);
   },
+  async delete(req, res){
+    await Recipe.delete(req.body.id);
+
+    res.redirect('/admin/recipes');
+  }
 };

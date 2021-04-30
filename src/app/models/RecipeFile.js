@@ -2,7 +2,7 @@ const db = require("../../db");
 
 module.exports = {
   // save ok
-  async save({ file_id, recipe_id }) {
+  async save(file_id, recipe_id) {
     const query = `
       INSERT INTO recipe_files (
         recipe_id,

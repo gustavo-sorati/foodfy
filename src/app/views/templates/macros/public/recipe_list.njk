@@ -3,31 +3,30 @@
         {% if title %}
             <h1 class="recipes__title">{{title}}</h1>
         {% endif %}
-
         {% for recipe in recipes%}
-            
+
             {% if index %}  {# this appear in page home #}
-                
+              {{recipe.image[recipe.image.file_id].src}}
                 {% if loop.index0 < index %}
                     <div class="recipes__card">
-                        <img class="recipes__card__image" src="{{recipe.image}}" alt="{{recipe.title}}">
-                            
+                        <img class="recipes__card__image" src="{{recipe.image}}" alt="{{recipe.name}}">
+
                         <div class="recipes__card__information">
                             <h3 class="recipes__card__title">{{recipe.title}}</h3>
-                            <p class="recipes__card__author">por {{recipe.chef_name}}</p>                            
-                        </div>     
+                            <p class="recipes__card__author">por {{recipe.chef_name}}</p>
+                        </div>
                     </div>
                 {% endif %}
 
             {% else %}
-                <div class="recipes__card" id={{recipe.id}}>
-                    <img class="recipes__card__image" src="{{recipe.image}}" alt="{{recipe.title}}">
-                                
+                <div class="recipes__card" id="{{recipe.id}}">
+                    <img class="recipes__card__image" src="{{recipe.image}}" alt="{{recipe.title}}" />
+
                     <div>
                         <h3 class="recipes__card__title">{{recipe.title}}</h3>
                         <p class="recipes__card__author">por {{recipe.chef_name}}</p>
                         {# <a href="/recipes/{{recipe.id}}">Visualizar</a> #}
-                    </div>     
+                    </div>
                 </div>
             {% endif %}
         {% endfor %}

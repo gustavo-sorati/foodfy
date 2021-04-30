@@ -1,6 +1,15 @@
 const db = require('../../db/index');
 
 module.exports = {
+  async findAllByChefId(chef_id){
+    const results = await db.query(`
+      SELECT recipes.*
+      from recipes
+      WHERE recipes.chef_id = $1
+    `, [chef_id]);
+
+    return results.rows;
+  },
   async findAll() {
     const results = await db.query(`
       SELECT recipes.*, chefs.name as chef_name
@@ -29,12 +38,6 @@ module.exports = {
 
   findByChefId(id) {
     let query = `SELECT * FROM recipes WHERE chef_id = $1`;
-
-    return db.query(query, [id]);
-  },
-
-  findById2(id) {
-    let query = `SELECT recipes.*, chefs.id as id_chef, chefs.name FROM recipes, chefs WHERE recipes.id = $1 AND recipes.chef_id = chefs.id`;
 
     return db.query(query, [id]);
   },
@@ -104,5 +107,11 @@ module.exports = {
       `, [id])
 
     return results.rows;
+  },
+  async delete(id){
+    await db.query(`
+      DELETE FROM recipes
+      WHERE id = $1
+    `, [id]);
   }
 };

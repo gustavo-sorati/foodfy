@@ -1,22 +1,22 @@
 {% macro cheflist(title, chefs)%}
 <section class="chef-content__wrapper container">
      <div class="chef-content">
-          
+
           {% if title %}
                <h1 class="chef-content__title">{{title}}</h1>
           {% endif %}
 
           {% for chef in chefs %}
           <div class="chef-content__list">
-               <img class="chef-content__list__avatar" src="{{chef.avatar_url}}" alt="{{chef.name}}">
+               <img class="chef-content__list__avatar" src="{{chef.image.src}}" alt="{{chef.name}}">
 
                <div class="chef-content__list__information">
                     <h4>{{chef.name}}</h4>
                     <p>
-                         {% if chef.qtdeRecipes <= 1 %}
-                         {{ chef.qtdeRecipes}} Receita
+                         {% if chef.total_recipes <= 1 %}
+                         {{ chef.total_recipes}} Receita
                          {% else %}
-                         {{ chef.qtdeRecipes}} Receitas
+                         {{ chef.total_recipes}} Receitas
                          {% endif %}
                     </p>
                </div>

@@ -15,7 +15,7 @@ routes.get('/recipes/:id/edit', RecipeController.edit);
 
 routes.post('/recipes', multer.array('image', 5), RecipeController.post);
 routes.put('/recipes', multer.array('image', 5), RecipeController.put);
-// // routes.delete('/recipes', recipes.delete);
+routes.delete('/recipes', RecipeController.delete);
 
 // CHEFS
 routes.get('/chefs', ChefController.index);

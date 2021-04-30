@@ -22,8 +22,8 @@
 
         </form>
 
-        <form action="">
-            <input type="hidden" name="id" id={{recipe.id}}>
+        <form action="/admin/recipes?_method=DELETE" method="POST">
+            <input type="hidden" name="id" id='{{recipe.id}}' value='{{recipe.id}}' />
             <button class="button delete" type="submit">Deletar</button>
         </form>
     </section>

@@ -1,50 +1,125 @@
 .recipes {
      display: grid;
      grid-template-columns: repeat(3, 1fr);
- 
+
      gap: 20px;
  }
- 
+
  .recipes__title {
      grid-column: 1 / 4;
      font-size: 1.5rem;
-     
+
      margin-bottom: 20px;
  }
- 
+
  .recipes__card {
      display: grid;
      grid-template-rows: 140px 1fr;
      gap: 20px;
-     
+
      cursor: pointer;
  }
- 
+
  .recipes__card__image {
      object-fit: cover;
-     
-     border-radius: 16px; 
+
+     border-radius: 16px;
      height: 100%;
      width: 100%;
  }
- 
+
  .recipes__card__title {
      font-size: 1.125rem;
      font-weight: normal;
      margin-bottom: 5px;
  }
- 
+
  .recipes_card_author {
      font-size: 14px;
      color: #777;
- 
+
  }
 
  /* RECIPE SHOW */
 
+ /* show: images */
+.show-images__container {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.show-images__main img {
+  object-fit: cover;
+  max-height: 280px;
+  width: 100%;
+  border-radius: 16px;
+}
+
+.show-images__childrens {
+display: flex;
+justify-content: flex-end;
+}
+
+.show-images__children {
+position: relative;
+max-width: 40px;
+max-height: 40px;
+margin: 4px;
+
+border-radius: 4px;
+}
+
+.show-images__children:last-child {
+margin-right: 0;
+}
+
+.show-images__children img {
+width: 100%;
+height: 100%;
+
+border-radius: 4px;
+
+cursor: pointer;
+}
+
+.show-images__children div {
+position: absolute;
+top: 0;
+left: 0;
+
+width: 100%;
+height: 100%;
+
+border-radius: 4px;
+
+background-color: rgba( 255, 255, 255, 0.5);
+
+transition: background-color .2s;
+
+cursor: pointer;
+}
+
+.show-images__children img.active ~ div {
+background-color: inherit;
+visibility: hidden;
+}
+
+
+
+
+
+.show-images__container__title {
+  font-size: 2rem;
+}
+
+.show-images__container p {
+  font-size: 1.25rem;
+  color: #777;
+}
+
 .recipes-show__informations {
     text-align: center;
-   margin-bottom: 60px; 
+   margin-bottom: 60px;
 }
 
 .recipes-show__informations img {
@@ -66,7 +141,7 @@
 }
 
 .recipes-show__cards {
-   margin-bottom: 40px; 
+   margin-bottom: 40px;
 }
 
 .recipes-show__cards__info {
